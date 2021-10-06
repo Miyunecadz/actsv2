@@ -98,12 +98,14 @@ class StorePersonTest extends TestCase
         $response = $this->actingAs(User::factory()->create())->post(route('persons.store'),[
             'firstname' => "JV",
             'lastname' => 'cadz',
+            'middlename'=>'',
             'address' => 'somewhere'
         ]);
 
         $response2 = $this->actingAs(User::factory()->create())->post(route('persons.store'),[
             'firstname' => "JV",
             'lastname' => 'cadz',
+            'middlename'=>'',
             'address' => 'somewhere'
         ]);
 
@@ -123,12 +125,14 @@ class StorePersonTest extends TestCase
         $response = $this->actingAs(User::factory()->create())->post(route('persons.store'),[
             'firstname' => "JV",
             'lastname' => 'cadz',
+            'middlename'=>'',
             'address' => 'somewhere'
         ]);
 
         $response2 = $this->actingAs(User::factory()->create())->post(route('persons.store'),[
             'firstname' => "JV",
             'lastname' => 'cadz',
+            'middlename'=>'',
             'address' => 'somewhere'
         ]);
 

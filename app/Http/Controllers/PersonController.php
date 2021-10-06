@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePersonRequest;
+use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Repositories\PersonRepository;
 
 class PersonController extends Controller
 {
+
+    protected PersonRepository $repository;
+
+    public function __construct(PersonRepository $repository )
+    {
+        $this->repository=$repository;  
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +44,7 @@ class PersonController extends Controller
      */
     public function store(StorePersonRequest $request)
     {
-        Person::create($request->validated());
+        $this->repository->create($request->all());
 
         return redirect(route('persons.index'))->with(['created' => true]);
     }
@@ -71,9 +78,9 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePersonRequest $request, Person $person)
     {
-        //
+        $this->repository->update($request->all(),$person);
     }
 
     /**
