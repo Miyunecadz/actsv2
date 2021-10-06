@@ -19,9 +19,8 @@ Route::get('/', function () {
 });
 
 
-Route::prefix('persons')->name('persons.')->group(function(){
-    Route::get('search',[PersonController::class,'search'])->name('search');
-    Route::get('search/results',[PersonController::class,'results'])->name('search-results');
+Route::middleware('auth')->group(function(){
+    Route::get('persons/search',[PersonController::class,'search'])->name('persons.search');
+    Route::resource('persons', PersonController::class);
 });
 
-Route::resource('persons', PersonController::class)->middleware('auth');

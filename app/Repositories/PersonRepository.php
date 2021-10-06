@@ -1,6 +1,7 @@
 <?php namespace App\Repositories;
 
 use App\Models\Person;
+use Illuminate\Support\Facades\DB;
 
 class PersonRepository{
 
@@ -27,6 +28,10 @@ class PersonRepository{
 
     public function search($keyword)
     {
-        return Person::where('firstname',$keyword)->get();
+        return Person::where('firstname',$keyword)
+                    ->orWhere('lastname',$keyword)
+                    ->orWhere(DB::raw("CONCAT(firstname,' ',lastname)"),$keyword)
+                    ->orWhere(DB::raw("CONCAT(lastname,' ',firstname)"),$keyword)
+                    ->get();
     }
 }

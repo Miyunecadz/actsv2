@@ -26,15 +26,11 @@ class PersonController extends Controller
     public function search(Request $request)
     {
         $persons=$this->repository->search($request->keyword);
-
-        return redirect(route('persons.search-results'))->with('persons',$persons);
-    }
-
-    public function results(Request $request)
-    {
-
         
+        return view('person.search-results',compact('persons'));
+    
     }
+
 
     public function create()
     {
