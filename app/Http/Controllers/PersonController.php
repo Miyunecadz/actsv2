@@ -6,6 +6,7 @@ use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
 use App\Repositories\PersonRepository;
+use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
@@ -20,6 +21,19 @@ class PersonController extends Controller
     public function index()
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $persons=$this->repository->search($request->keyword);
+
+        return redirect(route('persons.search-results'))->with('persons',$persons);
+    }
+
+    public function results(Request $request)
+    {
+
+        
     }
 
     public function create()

@@ -24,4 +24,9 @@ class PersonRepository{
         $person->save();
        
     }
+
+    public function search($keyword)
+    {
+        return Person::where('firstname',$keyword)->get();
+    }
 }

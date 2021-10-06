@@ -18,5 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('persons/search',[PersonController::class,'search'])->name('persons.search');
+Route::get('persons/search/results',[PersonController::class,'results'])->name('persons.search-results');
 Route::resource('persons', PersonController::class)->middleware('auth');
