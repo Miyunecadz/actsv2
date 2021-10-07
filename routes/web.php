@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PersonController;
 use Illuminate\Support\Facades\Route;
@@ -15,16 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    
-    return view('welcome');
-
-})->name('home');
 
 Route::post('/login',[LoginController::class,'login'])->name('login');
 
 Route::middleware('auth')->group(function(){
+
+    Route::get('/', [HomeController::class,'home'])->name('home');
+
     Route::get('persons/search',[PersonController::class,'search'])->name('persons.search');
+    
     Route::resource('persons', PersonController::class);
 });
 
