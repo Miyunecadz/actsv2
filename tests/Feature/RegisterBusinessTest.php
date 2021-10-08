@@ -93,5 +93,6 @@ class RegisterBusinessTest extends TestCase
        * 3. username must be unique
        * 4. name must be unique
        * 5. name must be required
-       * /
+       */
+
 }
