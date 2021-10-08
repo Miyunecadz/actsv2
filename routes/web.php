@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PersonController;
@@ -25,6 +26,10 @@ Route::middleware('auth')->group(function(){
 
     Route::get('persons/search',[PersonController::class,'search'])->name('persons.search');
     
-    Route::resource('persons', PersonController::class);
+    Route::resources([
+        'persons'=> PersonController::class,
+        'businesses'=>BusinessController::class
+    ]);
+    
 });
 
