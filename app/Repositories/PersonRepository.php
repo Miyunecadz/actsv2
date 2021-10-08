@@ -34,4 +34,9 @@ class PersonRepository{
                     ->orWhere(DB::raw("CONCAT(lastname,' ',firstname)"),$keyword)
                     ->get();
     }
+
+    public function delete(Person $person)
+    {
+        $person->delete();
+    }
 }

@@ -60,8 +60,10 @@ class PersonController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy(Person $person)
     {
-        //
+       $this->repository->delete($person);
+
+        return redirect(route('persons.index'))->with('deleted','Person was deleted successfully!');
     }
 }
